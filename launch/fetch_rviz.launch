@@ -1,0 +1,25 @@
+<launch>
+    <!-- Tell Gazebo where to find our custom object models -->
+    <env name="GAZEBO_MODEL_PATH" value="$(find crd10_ros360)/models:$(optenv GAZEBO_MODEL_PATH)" />
+
+    <!-- Start Gazebo with our world model-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find crd10_ros360)/worlds/single_room.world"/>
+    </include>
+
+    <!-- Start the fetch robot -->
+    <include file="$(find fetch_gazebo)/launch/include/fetch.launch.xml" />
+
+    <include file="$(find fetch_moveit_config)/launch/move_group.launch"/>
+
+    <include file="$(find crd10_ros360)/launch/image_proc.launch"/>
+
+    <!-- Start RViz with our saved view configuration -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find crd10_ros360)/config/fetch_rviz.rviz" />
+    <node type="get_contour" name ="get_contour" pkg = "crd10_ros360" />
+    <node type="move_to_object" name ="move_to_object" pkg = "crd10_ros360" />
+    <node type="change_state" name ="change_state" pkg = "crd10_ros360" />
+    <node type="image_converter" name ="image_converter" pkg= "crd10_ros360"/>
+    <node type="tf_broadcaster" name ="tf_broadcaster" pkg= "crd10_ros360"/>
+    <node type="tf_listener" name ="tf_listener" pkg= "crd10_ros360"/>
+</launch>
