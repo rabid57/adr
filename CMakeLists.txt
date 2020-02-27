@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(crd10_ros360)
+project(adr)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -58,14 +58,14 @@ find_package(Boost REQUIRED COMPONENTS system)
 # )
 
 ## Generate services in the 'srv' folder
-add_service_files(
-  FILES
-)
+##add_service_files(
+#  FILES
+#)
 
 ## Generate actions in the 'action' folder
-add_action_files(
-   FILES
-)
+##add_action_files(
+#   FILES
+#)
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
@@ -105,7 +105,7 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES crd10_ros360
+#  LIBRARIES ard
   CATKIN_DEPENDS geometry_msgs roscpp message_runtime actionlib_msgs actionlib control_msgs cv_bridge
 #  DEPENDS system_lib
 )
